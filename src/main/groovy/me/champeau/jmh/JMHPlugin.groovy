@@ -251,7 +251,7 @@ class JMHPlugin implements Plugin<Project> {
             }
             it.from(runtimeConfiguration.elements.map {
                 it.collect { it.asFile }
-                        .findAll { it.directory || it.name.toLowerCase().endsWith('.jar') }
+                        .findAll { it.directory || it.name.toLowerCase().matches('\\.(jar|rar|zip)$') }
                         .collect {
                             it.directory ? it : project.zipTree(it)
                         } as Set
